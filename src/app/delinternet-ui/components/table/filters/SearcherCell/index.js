@@ -9,12 +9,12 @@ const { SearchHeaderCell, TextHeaderCell } = Table;
  * Table Header Cell Wrapper to toggle
  * and perform the table filterintg.
  *
- * @param {Object} props {onFilter, chilfren}
+ * @param {Object} props { title, handler, icon }
  *
  * @author Jose Aburto <pino0071@gmail.com>
  * @version 1.0.0
  */
-export const SearcherCell = ({ title, onFilter, icon }) => {
+export const SearcherCell = ({ title, handler, icon }) => {
   const [switchSearch, setSwitchSearch] = React.useState(false);
 
   const setFocus = node => {
@@ -24,7 +24,7 @@ export const SearcherCell = ({ title, onFilter, icon }) => {
   return (
     <>
       {switchSearch ? (
-        <SearchHeaderCell ref={setFocus} onChange={onFilter}>
+        <SearchHeaderCell ref={setFocus} onChange={handler}>
           <TextHeaderCell>{title}</TextHeaderCell>
         </SearchHeaderCell>
       ) : (
