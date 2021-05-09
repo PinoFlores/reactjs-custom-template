@@ -14,7 +14,7 @@ const { SearchHeaderCell, TextHeaderCell } = Table;
  * @author Jose Aburto <pino0071@gmail.com>
  * @version 1.0.0
  */
-export const SearcherWrapper = ({ title, onFilter, icon }) => {
+export const SearcherCell = ({ title, onFilter, icon }) => {
   const [switchSearch, setSwitchSearch] = React.useState(false);
 
   const setFocus = node => {
