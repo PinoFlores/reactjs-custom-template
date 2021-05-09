@@ -1,0 +1,24 @@
+import * as React from 'react';
+import TableWrapper from 'app/components/Table';
+
+import './index.less';
+
+const BASE_{{upperCase modelName}}_URL = `${process.env.REACT_APP_BASE_SERVER_URL}/{{lowerCase modelName}}`;
+
+export const {{modelName}}Table = () => {
+
+
+return (
+<>
+    <Helmet>
+        <title>{{modelName}} Table</title>
+        <meta name="description" content="Delinternet system" />
+    </Helmet>
+    <div className="{{lowerCase modelName}}_table">
+        <TableWrapper baseUrl={`${BASE_{{upperCase modelName}}_URL}`} columns={[ { title : 'ID' , key : 'id' , dataIndex
+            : 'id' } ]} />
+    </div>
+</>
+);
+
+}

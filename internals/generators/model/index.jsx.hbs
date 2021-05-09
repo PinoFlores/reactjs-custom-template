@@ -1,0 +1,33 @@
+import * as React from 'react';
+import { Helmet } from 'react-helmet-async';
+
+import './index.less';
+
+{{#if wantRedux}}
+// TODO Register your {{modelName}}Reducer into the index Reducer.
+{{/if}}
+{{#if wantTable}}
+// TODO Register {{modelName}}Form into routes like: /{{lowerCase modelName}}/:id and /{{lowerCase modelName}}/new.
+{{/if}}
+// TODO Register your {{modelName}} page into the routes like: /{{lowerCase modelName}}
+
+const {{modelName}} = () => {
+
+return (
+<>
+    <Helmet>
+        <title>{{modelName}}</title>
+        <meta name="description" content="Delinternet system" />
+    </Helmet>
+    <div className="{{lowerCase modelName}}_container">
+        {{#if wantTable}}
+        <{{modelName}}Table />
+        {{else}}
+        // TODO Implement your page here...
+        {{/if}}
+    </div>
+</>
+);
+}
+
+export default {{modelName}};

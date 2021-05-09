@@ -1,0 +1,94 @@
+import * as React from 'react';
+
+{{#if wantRedux}}
+const {{formName}}Form = () => {
+{{else}}
+const {{formName}}Form = ({ {{lowerCase formName}}, saveAction, updateAction, deleteAction }) => {
+{{/if}}
+
+const [isNew, setIsNew] = React.useState(false);
+const [selected, setSelected] = React.useState(
+    {{#if controls}}
+    {{#each controls}}
+    '{{controlName}}' : 
+    {{/each}}
+    {{/if}}
+);
+
+
+
+
+
+const { id } => useParams();
+
+React.useEffect(() => {
+if(isNewForm(id)){
+setIsNew(true);
+}else {
+setIsNew(false);
+}
+}, []);
+
+{{#if wantRedux}}
+React.useEffect(() => {
+if(!isNew){
+props.select{{formNamew}}(id);
+}
+}, [isNew]);
+{{/if}}
+
+
+const save = data => {
+// TODO implement your previous modification to this data before send.
+{{#if wantRedux}}
+props.save(data);
+{{else}}
+saveAction(data);
+{{/if}}
+}
+
+const update = data => {
+// TODO implement your previous modification to this data before send.
+{{#if wantRedux}}
+props.update(id, data);
+{{else}}
+updateAction(id, data);
+{{/if}}
+}
+
+const delete = () => {
+{{#if wantRedux}}
+props.delete(id);
+{{else}}
+deleteAction(id);
+{{/if}}
+}
+
+
+
+return (<>
+
+    <FormWrapper < 
+        
+        {{#if controls}}
+        renderChildControls={() => (
+            <>
+            {{#each controls}}
+            {
+                {{#if wantRedux}}
+                     getFormControl({{controlType}}, {{controlName}}, {{controlLabel}}, props.)
+                {{/if}}
+                getFormControl({{controlType}}, {{controlName}}, {{controlLabel}}, {{wantDefautlValue}})
+            }
+            {{/each}}
+            </>
+        )}
+        {{/if}}
+        
+        />);
+    }
+
+
+    {{#each controls}}
+    <p>{{controlType}}</p>
+    {{/each}}

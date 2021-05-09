@@ -1,0 +1,20 @@
+{
+  "Title": "Welcome",
+  "TopMenu": {
+    "UserInfo": {
+      "Profile": "Profile",
+      "Settings": "Settins",
+      "Logout": "Logout"
+    }
+  },
+  "WhatsappService": {
+    "Login": {
+      "Information": {
+        "Title": "To use Whatsapp in your Computer:",
+        "Step1": "Open Whatsapp in your phone",
+        "Step2": "Touch on Menu or Configuration and select Whatsapp Web.",
+        "Step3": "When the camera is activated, point your phone at the screen to scan the code."
+      }
+    }
+  }
+}

@@ -1,0 +1,43 @@
+import { FETCH_ALL_{{upperCase modelName}}S, SELECT_{{upperCase modelName}}, RESET_SELETED_{{upperCase modelName}},
+SET_{{upperCase modelName}}_ALERT,
+SAVE_NEW_{{upperCase modelName}}, UPDATE_{{upperCase modelName}} } from
+'store/type/{{modelName}}Type';
+
+const initialState = {
+all_{{lowerCase modelName}}s : [],
+selected_{{lowerCase modelName}} : null,
+{{lowerCase modelName}}_alerts : {
+active : false,
+type : '',
+cmd : '',
+activeOnlyFor : '{{modelName}}',
+message : ''
+},
+};
+
+
+export const {{modelName}}Reducer = (state = initialState, action) => {
+
+const {type, payload} = action;
+
+switch(type) {
+case FETCH_ALL_{{upperCase modelName}}S:
+return {...state, all_{{lowerCase modelName}}s : payload };
+case SELECT_{{upperCase modelName}}:
+return {...state, selected_{{lowerCase modelName}} : payload };
+case RESET_SELETED_{{upperCase modelName}}:
+return {...state, selected_{{lowerCase modelName}} : null };
+case SET_{{upperCase modelName}}_ALERT:
+return {...state, {{lowerCase modelName}}_alerts : ({...{{lowerCase modelName}}_alerts, ...payload}) };
+case SAVE_NEW_{{upperCase modelName}}:
+case UPDATE_{{upperCase modelName}}:
+const lastUpdate = all_{{lowerCase modelName}}s.map(item => {
+if(item.id == payload.id) return ({...item, ...payload});
+return item;
+});
+return {...state, all_{{lowerCase modelName}}s : lastUpdate}
+default:
+return {...state};
+}
+
+}

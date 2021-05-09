@@ -1,0 +1,124 @@
+import * as React from 'react';
+
+import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
+import { useParams, useRouteMatch } from 'react-router-dom';
+import { OnChange } from 'react-final-form-listeners';
+import { Button } from '@blueprintjs/core';
+{{#if wantRedux}}
+import { connect } from 'react-redux';
+{{/if}}
+
+import { FormWrapper, isNewForm } from 'app/components/Form';
+{{#if wantRedux}}
+import { fetchAll{{modelName}}s, select{{modelName}}ById, resetSelected{{modelName}}, create{{modelName}},
+update{{modelName}} } from 'store/action/{{modelName}}';
+{{/if}}
+
+import './index.less';
+
+{{#if wantRedux}}
+const {{modelName}}Form = props => {
+{{else}}
+export const {{modelName}}Form = props => {
+{{/if}}
+
+// Hooks
+const { t } = useTranslation();
+const { id } = useParams();
+const { path } = useRouteMatch();
+
+// Component State
+const [formState, setFormState] = React.useState({
+name : 'John'
+});
+
+
+// Effects
+{{#if wantRedux}}
+// Fetch the default model values from api by id.
+React.useEffect(() => {
+// if path is for new let's create a new model.
+if(!isNewForm(path)) props.select{{modelName}}ById(id);
+// if contain a valid id let's update the model.
+else props.resetSelected{{modelName}}();
+}, []);
+
+// Set the component state with the real model value.
+React.useEffect(() => {
+if(props.selected_{{lowerCase modelName}}) setFormState(props.selected_{{lowerCase modelName}});
+}, [props.selected_{{lowerCase modelName}}]);
+{{/if}}
+
+
+// Components Properties
+const onSubmit = data => {
+console.log(data);
+if(!isNewForm(path)) {
+updateModel(id, data);
+}else {
+createModel(data);
+}
+}
+
+const createModel = formData => {
+props.create{{modelName}}(id, formData);
+}
+
+const updateModel = (id, formData) => {
+props.update{{modelName}}(id, formData);
+}
+
+
+
+// JSX
+return (
+<>
+    <Helmet>
+        <title>{{modelName}}</title>
+        <meta name="description" content="Delinternet system" />
+    </Helmet>
+    <div className="{{lowerCase modelName}}_form">
+        <FormWrapper onSubmit={onSubmit} formEventButtons={()=> (
+            <>
+                <Button type="submit" intent="primary">
+                    {t('Form.Crud.Submit')}
+                </Button>
+            </>
+            )}
+            renderChildControls={()=>(
+            <>
+                <div>
+                    <InputTextControl name="name" label={t('Models.{{modelName}}.Form.Fields.Name')}
+                        defaultValue={formState.name} />
+                    <OnChange name="name">
+                        {
+                        (value, previous) => {
+                        if(previous) setFormState(pre => ({...pre, name : previous}))
+                        console.log(value);
+                        console.log(previous);
+                        }
+                        }
+                    </OnChange>
+                </div>
+
+            </>
+            ) }
+            />
+    </div>
+</>
+);
+
+
+}
+
+
+{{#if wantRedux}}
+const mapStateToProps = ({ {{modelName}}Reducer }) => {
+const { all_{{lowerCase modelName}}s, selected_{{lowerCase modelName}}, {{lowerCase modelName}}_alerts } =
+{{modelName}}Reducer;
+return { all_{{lowerCase modelName}}s, selected_{{lowerCase modelName}}, {{lowerCase modelName}}_alerts };
+}
+export default connect(mapStateToProps, { fetchAll{{modelName}}s, select{{modelName}}ById, resetSelected{{modelName}},
+create{{modelName}}, update{{modelName}} })({{modelName}}Form);
+{{/if}}

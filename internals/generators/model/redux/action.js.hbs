@@ -1,0 +1,162 @@
+import { FETCH_ALL_{{upperCase modelName}}S, SELECT_{{upperCase modelName}}, RESET_SELETED_{{upperCase modelName}},
+SET_{{upperCase modelName}}_ALERT,
+SAVE_NEW_{{upperCase modelName}}, UPDATE_{{upperCase modelName}} } from
+'store/type/{{modelName}}Type';
+import ApiService from 'app/Helpers/ApiService';
+
+const BASE_{{upperCase modelName}}_URL = `${process.env.REACT_APP_BASE_SERVER_URL}/{{lowerCase modelName}}`;
+
+
+/**
+* Request all {{modelName}}s from the server and
+* store them into the redux store.
+*
+* You can subscribe to {{upperCase modelName}}Reducer.all_{{lowerCase modelName}} to
+* get all this records updations.
+*
+* @returns {Function} dispatch.
+*/
+export const fetchAll{{modelName}}s = () => {
+return dispatch => {
+ApiService.get(`${BASE_{{upperCase modelName}}_URL}`)
+.then(({data}) => {
+dispatch({
+type: FETCH_ALL_{{upperCase modelName}}S,
+payload : data
+});
+})
+.catch(({response}) => {
+dispatch({
+type: FETCH_ALL_{{upperCase modelName}},
+payload : null
+});
+
+dispatch({
+type: SET_{{upperCase modelName}}_ALERT,
+payload : null
+});
+});
+}
+}
+
+
+/**
+* Given a {{modelName}} id request a {{modelName}} from the server
+* and store it into the redux local store.
+*
+* In case this request fail this function dispatch a SET_{{upperCase modelName}}_ALERT,
+* that set the {{upperCase modelName}}Reducer.{{lowerCase modelName}}_alerts field. You
+* can subscribe to this change too.
+*
+* @param {number} if - {{modelName}} id.
+* @param {Object} dataForm - {{modelName}} body.
+* @returns {Function} dispatch.
+*/
+export const select{{modelName}}ById = (id) => {
+return dispatch => {
+ApiService.get(`${BASE_{{upperCase modelName}}_URL}/${id}`)
+.then(({data}) => {
+dispatch({
+type: SELECT_{{upperCase modelName}},
+payload : data
+});
+})
+.catch(({response}) => {
+dispatch({
+type: SELECT_{{upperCase modelName}},
+payload : null
+});
+
+dispatch({
+type: SET_{{upperCase modelName}}_ALERT,
+payload : {
+active : true,
+type : 'error',
+cmd : '',
+activeOnlyFor : '{{modelName}}',
+message : 'Put Your Own Error Local Here To Translate'
+}
+});
+});
+}
+}
+
+
+/**
+* Reset the selected {{modelName}} into the redux store.
+*
+* @returns {Function} dispatch.
+*/
+export const resetSelected{{modelName}} = () => {
+return dispatch => {
+dispatch({
+type: RESET_SELETED_{{upperCase modelName}},
+payload : data
+});
+}
+}
+
+
+/**
+* Create a new {{modelName}} model into the system.
+*
+* @param {Object} dataForm - {{modelName}} body.
+* @returns {Function} dispatch.
+*/
+export const create{{modelName}} = dataForm => {
+return dispatch => {
+ApiService.post(`${BASE_{{upperCase modelName}}_URL}`, dataForm)
+.then(({data : returnedData}) => {
+const {data} = returnedData;
+dispatch({
+type: SAVE_NEW_{{upperCase modelName}},
+payload : data
+});
+})
+.catch(({response}) => {
+dispatch({
+type: SET_{{upperCase modelName}}_ALERT,
+payload : {
+active : true,
+type : 'error',
+cmd : '',
+activeOnlyFor : '{{modelName}}',
+message : 'Put Your Own Error Local Here To Translate'
+}
+});
+});
+}
+}
+
+
+/**
+* Given a {{modelName}} id and a payload update a {{modelName}}.
+*
+* @param {number} if - {{modelName}} id.
+* @param {Object} dataForm - {{modelName}} body.
+* @returns {Function} dispatch.
+*/
+export const update{{modelName}} = (id, dataForm) => {
+return dispatch => {
+ApiService.patch(`${BASE_{{upperCase modelName}}_URL}/${id}`, dataForm)
+.then(({data : returnedData}) => {
+const {data} = returnedData;
+dispatch({
+type: UPDATE_{{upperCase modelName}},
+payload : data
+});
+})
+.catch(({response}) => {
+dispatch({
+type: SET_{{upperCase modelName}}_ALERT,
+payload : {
+active : true,
+type : 'error',
+cmd : '',
+activeOnlyFor : '{{modelName}}',
+message : 'Put Your Own Error Local Here To Translate'
+}
+});
+});
+}
+}

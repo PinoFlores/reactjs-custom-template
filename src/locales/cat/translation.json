@@ -1,0 +1,20 @@
+{
+  "Title": "Benvingut",
+  "TopMenu": {
+    "UserInfo": {
+      "Profile": "Perfil",
+      "Settings": "Configuració",
+      "Logout": "Tancar sessió"
+    }
+  },
+  "WhatsappService": {
+    "Login": {
+      "Information": {
+        "Title": "Per utilitzar Whatsapp a l'ordinador:",
+        "Step1": "Obriu Whatsapp al telèfon",
+        "Step2": "Toqueu Menú o Configuració i seleccioneu Whatsapp Web.",
+        "Step3": "Quan la càmera està activada, apunteu el telèfon a la pantalla per escanejar el codi."
+      }
+    }
+  }
+}
