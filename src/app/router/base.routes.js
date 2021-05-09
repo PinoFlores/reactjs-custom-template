@@ -1,9 +1,8 @@
 import Dashboard from '@pages/Dashboard';
 
-
 export const BaseRoutes = [
   { exact: true, path: '/', component: <Dashboard /> },
-// Example
+  // Example
   {
     exact: true,
     path: '/page',
@@ -19,6 +18,4 @@ export const BaseRoutes = [
     path: '/page/new',
     // component: < />,
   },
-
- 
 ];

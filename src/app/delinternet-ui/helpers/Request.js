@@ -45,7 +45,7 @@ export class Request {
 
   static get instance() {
     if (!this[singleton]) {
-      this[singleton] = new ApiService(singletonEnforcer);
+      this[singleton] = new Request(singletonEnforcer);
     }
     return this[singleton];
   }
@@ -57,4 +57,4 @@ export class Request {
   delete = (...params) => this.session.delete(...params);
 }
 
-export default ApiService.instance;
+export default Request.instance;

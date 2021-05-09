@@ -6,7 +6,10 @@ module.exports = {
     alias: {
       '@': path.resolve(__dirname, 'src/'),
       '@app': path.resolve(__dirname, 'src/app'),
-      '@components': path.resolve(__dirname, 'src/app/components'),
+      '@components': path.resolve(
+        __dirname,
+        'src/app/delinternet-ui/components',
+      ),
       '@pages': path.resolve(__dirname, 'src/app/pages'),
       '@router': path.resolve(__dirname, 'src/app/router'),
     },

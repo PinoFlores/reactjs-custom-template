@@ -1,22 +1,22 @@
 import * as React from 'react';
+
 import { Helmet } from 'react-helmet-async';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 import { GlobalStyle } from 'styles/global-styles';
-
-import Base from '@pages/Layout/Base';
+import Base from 'app/pages/layout/base/index';
 import { useTranslation } from 'react-i18next';
 import { NotFoundPage } from '@components/NotFoundPage';
 import Login from './pages/login';
-import Favicon from '../app/Assets/Favicon.png';
+// import Favicon from '../app/Assets/Favicon.png';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './delinternet-ui/theme/theme';
 import { GlobalStyles } from 'app/delinternet-ui/theme/globalStyles';
 import { connect } from 'react-redux';
+import { Toaster } from 'react-hot-toast';
 
 import './App.less';
-import { Toaster } from 'react-hot-toast';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -42,7 +42,7 @@ function App(props) {
             defaultTitle="App"
             htmlAttributes={{ lang: i18n.language }}
           >
-            <link rel="icon" type="image/png" href={Favicon} sizes="16x16" />
+            {/* <link rel="icon" type="image/png" href={Favicon} sizes="16x16" /> */}
             <meta name="description" content="App application" />
           </Helmet>
           <QueryClientProvider client={queryClient}>

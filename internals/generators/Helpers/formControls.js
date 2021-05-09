@@ -16,8 +16,8 @@ const getFormControl = (answers, config, plop) => {
 
   if (Object.keys(answers).includes('controls')) {
     response = answers.controls.map(control => {
-        const { controlType } = control;
-        return formControls[controlType]
-    })
+      const { controlType } = control;
+      return formControls[controlType];
+    });
   }
 };
