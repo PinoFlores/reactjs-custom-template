@@ -5,7 +5,7 @@ const initialState = {
 };
 
 export const ThemeReducer = (state = initialState, action) => {
-  const { type, payload } = action;
+  const { type } = action;
   switch (type) {
     case SWITCH_THEME:
       const currentTheme = state.theme;
