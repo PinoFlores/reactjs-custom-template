@@ -1,5 +1,5 @@
 import { message } from 'antd';
-import ApiService from 'app/helpers/Request';
+import ApiService from 'app/delinternet-ui/helpers/Request';
 import { setAuthToken } from 'app/Helpers/AuthenticationToken';
 import Axios from 'axios';
 import { SET_LOGIN_STATUS } from 'store/Type/AuthType';

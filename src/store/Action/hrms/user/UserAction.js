@@ -6,7 +6,7 @@ import {
   UPDATE_USER,
   SET_ALERT,
 } from 'store/Type/hrms/user/UserType';
-import ApiService from 'app/helpers/Request';
+import ApiService from 'app/delinternet-ui/helpers/Request';
 
 const BASE_URL = `${process.env.REACT_APP_BASE_URL}/users`;
 

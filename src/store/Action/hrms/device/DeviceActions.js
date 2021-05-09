@@ -1,8 +1,8 @@
 // export const reconnectDevice = deviceId => {};
 
-import ApiService from 'app/helpers/Request';
+import ApiService from 'app/delinternet-ui/helpers/Request';
 import FingerPrintConverter from 'app/Helpers/FingerPrintConverter';
-import { ObjectHelper } from 'app/helpers/ObjectCheckerHelper';
+import { ObjectHelper } from 'app/delinternet-ui/helpers/ObjectCheckerHelper';
 import toast from 'react-hot-toast';
 import {
   FETCH_ALL_FINGERPRINTS_TEMPLATES,

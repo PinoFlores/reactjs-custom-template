@@ -11,8 +11,8 @@ import { NotFoundPage } from '@components/NotFoundPage';
 import Login from './pages/login';
 import Favicon from '../app/Assets/Favicon.png';
 import { ThemeProvider } from 'styled-components';
-import { lightTheme, darkTheme } from '../theme/theme';
-import { GlobalStyles } from 'theme/globalStyles';
+import { lightTheme, darkTheme } from './delinternet-ui/theme/theme';
+import { GlobalStyles } from 'app/delinternet-ui/theme/globalStyles';
 import { connect } from 'react-redux';
 
 import './App.less';
@@ -26,12 +26,10 @@ const queryClient = new QueryClient({
   },
 });
 
-
 function App(props) {
   const { i18n } = useTranslation();
 
   React.useEffect(() => {}, []);
-
 
   return (
     <ThemeProvider theme={props.theme === 'light' ? lightTheme : darkTheme}>

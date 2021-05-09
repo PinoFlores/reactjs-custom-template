@@ -1,4 +1,4 @@
-import ApiService from 'app/helpers/Request';
+import ApiService from 'app/delinternet-ui/helpers/Request';
 import {
   GET_ALL_CLOSETS,
   GET_CLOSET_BY_ID,
