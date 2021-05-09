@@ -10,7 +10,7 @@ import {
 
 const { TextHeaderCell } = Table;
 
-export const SelecterCell = ({
+export const SelectorCell = ({
   title,
   handler,
   options = [],

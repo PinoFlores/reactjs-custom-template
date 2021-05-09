@@ -1,3 +1,4 @@
+import Table from 'app/delinternet-ui/components/table';
 import * as React from 'react';
 
 // import { Helmet } from 'react-helmet-async';
@@ -16,8 +17,12 @@ const Base = props => {
         <meta name="description" content="Delinternet Unpaid" />
       </Helmet> */}
       <div className="main-container">
-        <div className="navbar-container">asdfasdfasdf</div>
-        <main>{/* <Switch></Switch> */}</main>
+        <div className="navbar-container"></div>
+        <main style={{ margin: '3rem' }}>
+          {/* <Switch></Switch> */}
+
+          <Table />
+        </main>
       </div>
     </>
   );

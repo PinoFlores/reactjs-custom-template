@@ -24,7 +24,10 @@ export const SearcherCell = ({ title, handler, icon }) => {
   return (
     <>
       {switchSearch ? (
-        <SearchHeaderCell ref={setFocus} onChange={handler}>
+        <SearchHeaderCell
+          ref={setFocus}
+          onChange={value => handler({ filter: value })}
+        >
           <TextHeaderCell>{title}</TextHeaderCell>
         </SearchHeaderCell>
       ) : (
