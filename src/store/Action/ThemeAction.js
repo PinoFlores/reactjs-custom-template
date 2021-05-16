@@ -1,4 +1,4 @@
-import { SWITCH_THEME } from 'store/Type/ThemeType';
+import { SWITCH_THEME } from 'store/types/ThemeType';
 
 export const switchTheme = () => {
   return dispatch => {

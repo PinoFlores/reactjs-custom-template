@@ -14,7 +14,7 @@ const { SearchHeaderCell, TextHeaderCell } = Table;
  * @author Jose Aburto <pino0071@gmail.com>
  * @version 1.0.0
  */
-export const SearcherCell = ({ title, handler, icon }) => {
+export const SearcherCell = ({ name = 'searching', title, handler, icon }) => {
   const [switchSearch, setSwitchSearch] = React.useState(false);
 
   const setFocus = node => {
@@ -26,7 +26,7 @@ export const SearcherCell = ({ title, handler, icon }) => {
       {switchSearch ? (
         <SearchHeaderCell
           ref={setFocus}
-          onChange={value => handler({ filter: value })}
+          onChange={value => handler({ [name]: value })}
         >
           <TextHeaderCell>{title}</TextHeaderCell>
         </SearchHeaderCell>
@@ -37,6 +37,9 @@ export const SearcherCell = ({ title, handler, icon }) => {
       <HeaderCellToggler
         isActive={switchSearch}
         setIsActive={setSwitchSearch}
+        onClose={() => {
+          handler({ [name]: '' });
+        }}
         icon={icon}
       />
     </>

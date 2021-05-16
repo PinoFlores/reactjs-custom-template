@@ -21,7 +21,7 @@ export const BodyBuilder = ({ dataSource = [], columns = [] }) => {
           model={data}
           columns={columns}
           isSelectable={true}
-          onSelect={item => console.log(item)}
+          onSelect={() => console.log(data)}
         />
       ))}
     </Body>

@@ -10,7 +10,7 @@ import { CrossIcon, IconButton, SearchIcon } from 'evergreen-ui';
  * @author Jose Aburto <pino0071@gmail.com>
  * @version 1.0.0
  */
-export const HeaderCellToggler = ({ isActive, setIsActive, icon }) => {
+export const HeaderCellToggler = ({ isActive, setIsActive, onClose, icon }) => {
   /**
    * Set a default icon in case clients dont that prop.
    *
@@ -22,6 +22,7 @@ export const HeaderCellToggler = ({ isActive, setIsActive, icon }) => {
    * Event handler for change parent state.
    */
   const handleSetIsActive = () => {
+    if (isActive) onClose();
     setIsActive(pre => !pre);
   };
 

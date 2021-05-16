@@ -9,8 +9,8 @@ export const filterBuilder = (columnsDefinitions = []) => {
     console.error('Please implement the handler for this filer.');
 
   return columnsDefinitions.map(column => {
-    const { title, key, filter } = column;
-    const { type } = filter || { type: 'cell' };
+    const { title, key, filter, defaultValue } = column;
+    const { type } = filter || { type: 'cell', defaultValue: null };
 
     if (type === 'cell') {
       return <TextHeaderCell key={key}>{title}</TextHeaderCell>;
@@ -18,9 +18,24 @@ export const filterBuilder = (columnsDefinitions = []) => {
       const { handler } = filter || defaultHandler;
       switch (type) {
         case 'search':
-          return <SearcherCell title={title} handler={handler} />;
+          let { name: searcherName } = filter || { name: 'selected' };
+          return (
+            <SearcherCell name={searcherName} title={title} handler={handler} />
+          );
         case 'select':
-          return <SelectorCell title={title} handler={handler} />;
+          let { options, name: selectorName } = filter || {
+            options: [],
+            name: 'selected',
+          };
+          return (
+            <SelectorCell
+              name={selectorName}
+              selected={defaultValue}
+              options={options}
+              title={title}
+              handler={handler}
+            />
+          );
         default:
           return <TextHeaderCell key={key}>{title}</TextHeaderCell>;
       }

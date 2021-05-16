@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export const ObjectHelper = {
   contains: function (obj = {}, property) {
     return Object.keys(obj).includes(property);
@@ -12,5 +14,11 @@ export const ObjectHelper = {
 
   getPropertyAsArray: function (obj = {}) {
     return Object.keys(obj);
+  },
+  setIfHas: function (from, to, needProp = '', propAs = null) {
+    if (_.has(from, needProp)) {
+      to[propAs ? propAs : needProp] = from[needProp];
+    }
+    return to;
   },
 };

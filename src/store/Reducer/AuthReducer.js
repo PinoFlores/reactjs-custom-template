@@ -1,4 +1,4 @@
-import { SET_LOGIN_STATUS } from 'store/Type/AuthType';
+import { SET_LOGIN_STATUS } from 'store/types/AuthType';
 
 const initialState = {
   loginStatus: '',

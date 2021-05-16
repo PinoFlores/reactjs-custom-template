@@ -11,6 +11,7 @@ import {
 const { TextHeaderCell } = Table;
 
 export const SelectorCell = ({
+  name = 'selected',
   title,
   handler,
   options = [],
@@ -33,7 +34,7 @@ export const SelectorCell = ({
         onFilterChange={filter => handler({ filter })}
         selected={selected}
         options={transformOptions(options)}
-        onSelect={item => handler({ selected: item.value })}
+        onSelect={item => handler({ [name]: item.value })}
         onClose={setSwitchSearch}
       >
         <IconButton
